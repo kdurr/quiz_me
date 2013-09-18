@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130918153331) do
+ActiveRecord::Schema.define(version: 20130918153703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "question_choice_id"
+    t.integer  "submission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "question_choices", force: true do |t|
+    t.string   "option",      null: false
+    t.boolean  "correct"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", force: true do |t|
     t.string   "name",       null: false
@@ -28,6 +44,13 @@ ActiveRecord::Schema.define(version: 20130918153331) do
     t.integer  "age_rating"
     t.boolean  "private",    default: false
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submissions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "quiz_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
