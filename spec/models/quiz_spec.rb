@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Quiz do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it { should belong_to :user }
+  it { should have_many :submissions }
+  it { should have_many :questions }
+
+  it { should validate_presence_of :title }
+
 end
