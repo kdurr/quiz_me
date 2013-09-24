@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_presence_of :username
   validates_presence_of :password
+  validates_presence_of :password_confirmation
 
   validates_format_of :email, 
     :with => /.+@.+\..+/i
+
+  validates_numericality_of :age,
+    :only_integer
 end
