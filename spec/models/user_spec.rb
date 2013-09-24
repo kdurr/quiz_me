@@ -24,5 +24,4 @@ describe User do
 
   it { should have_valid(:password).when('abc123!', '9876zyxw*') }
   it { should_not have_valid(:password).when(nil, '') }
-
 end

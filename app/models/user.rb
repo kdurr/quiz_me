@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :quizzes
-  has_many :submissions
+  has_many :quizzes,
+    inverse_of: :user
+  has_many :submissions,
+    inverse_of: :user
 
   validates_presence_of :first_name
   validates_presence_of :last_name
