@@ -8,7 +8,7 @@ describe User do
   it { should validate_presence_of :last_name }
   it { should validate_presence_of :username }
   it { should validate_presence_of :email }
-  it { should validate_presence_of :age }
+  it { should validate_numericality_of :age }
   it { should validate_presence_of :password }
   it { should validate_presence_of :password_confirmation }
 
@@ -25,7 +25,7 @@ describe User do
   it { should_not have_valid(:email).when(nil, '', 'dfi34kjdsf') }
 
   it { should have_valid(:age).when(12, 21) }
-  it { should_not have_valid(:age).when(nil, '', 'dfi34kjdsf', 16.58) }
+  it { should_not have_valid(:age).when(nil, '', 'dfi34kjdsf') }
 
   it { should have_valid(:password).when('abc123!', '9876zyxw*') }
   it { should_not have_valid(:password).when(nil, '') }

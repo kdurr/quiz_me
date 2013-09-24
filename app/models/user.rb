@@ -14,6 +14,5 @@ class User < ActiveRecord::Base
   validates_format_of :email, 
     :with => /.+@.+\..+/i
 
-  validates_numericality_of :age,
-    :only_integer
+  validates_numericality_of :age
 end
