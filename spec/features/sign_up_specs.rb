@@ -21,11 +21,11 @@ feature 'unauthenticated user signs up', %Q{
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
     fill_in 'Username', with: 'jsmith'
-    fill_in 'Email', with: 'jsmith@example.com'
     fill_in 'Age', with: 12
+    fill_in 'Email', with: 'jsmith@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
-    click_button 'Sign Me Up!'
+    click_on 'Sign Me Up!'
 
     expect(page).to have_content("You are now signed up!")
     expect(page).to have_content("Sign Out")
@@ -37,3 +37,4 @@ feature 'unauthenticated user signs up', %Q{
   scenario 'the password confirmation fails' do
   end  
 end
+
