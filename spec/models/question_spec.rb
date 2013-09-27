@@ -7,4 +7,5 @@ describe Question do
   it { should have_many :answers }
 
   it { should validate_presence_of :name }
+
 end

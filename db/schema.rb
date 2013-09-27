@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20130924212034) do
     t.string   "title",                      null: false
     t.integer  "age_rating"
     t.boolean  "private",    default: false
-    t.integer  "user_id"
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

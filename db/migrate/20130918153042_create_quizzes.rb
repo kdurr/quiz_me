@@ -4,7 +4,7 @@ class CreateQuizzes < ActiveRecord::Migration
       t.string :title, null:false
       t.integer :age_rating
       t.boolean :private, default:false
-      t.integer :user_id
+      t.integer :user_id, null: false
 
       t.timestamps
     end

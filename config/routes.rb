@@ -1,6 +1,10 @@
 BreakableToy::Application.routes.draw do
   devise_for :users
   resources :users
+  resources :quizzes do
+    resources :questions
+  end
+  resources :questions
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

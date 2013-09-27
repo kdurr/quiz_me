@@ -31,7 +31,7 @@ feature 'unauthenticated user signs up', %Q{
     expect(page).to have_content("Sign Out")
   end
 
-  scenario 'required information is not supplied' do
+  scenario 'invalid information is supplied' do
   end
 
   scenario 'the password confirmation fails' do

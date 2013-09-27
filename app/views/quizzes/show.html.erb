@@ -1,0 +1,9 @@
+<%= @quiz.title %>
+
+<!-- Add quiz questions here -->
+<%= simple_form_for @quiz do |f| %>
+  <%= f.input :title %>
+  <%= f.simple_fields_for :questions do |p| %>
+    <%= p.input :name %>
+  <%- end -%>
+<%- end -%>
