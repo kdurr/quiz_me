@@ -5,7 +5,6 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    @quiz.questions.build
   end
 
   def create
@@ -21,11 +20,22 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
+    4.times { @quiz.questions.build }
   end
 
+  def update
+    @quiz = Quiz.find(params[:id])
+    respond_to do |format|
+      if @quiz.update(quiz_params)
+        format.html { redirect_to @quiz, notice: 'Quiz Updated'}
+      else
+        format.html { render action: 'edit' }
+      end
+    end
+  end
 
   protected
   def quiz_params
-    params.require(:quiz).permit(:title, :age_rating, :private)
+    params.require(:quiz).permit(:title, :age_rating, :private, :question)
   end
 end
