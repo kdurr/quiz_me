@@ -2,5 +2,27 @@
   <%= f.input :title %>
   <%= f.input :age_rating, collection: 3..110 %>
   <%= f.input :private %>
+  <%= f.simple_fields_for :questions do |q| %>
+    <%= q.input :name, :label => 'Question' %>
+  <% end %>
+  <%= link_to 'Add Question', "", class: 'add-question' %>
   <%= f.submit %>
+<% end %>
+
+<%= content_for :extra_footer do %>
+  <script>
+    $(function(){
+     $('.add-question').click(function(e){
+      e.preventDefault();
+      var $last_question = $('.quiz_questions_name').last();
+      var count = $('.quiz_questions_name').size();
+      
+      var $new_field = $last_question.clone();
+
+      $new_field.find('textarea').attr('id', "quiz_questions_attributes_" + count + "_name");
+      $new_field.find('textarea').attr('name', "quiz[questions_attributes][" + count + "][name]");
+      $last_question.after($new_field);
+     });
+    });
+  </script>
 <% end %>

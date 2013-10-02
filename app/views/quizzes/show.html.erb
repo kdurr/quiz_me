@@ -11,7 +11,7 @@
     <%= q.label :_destroy, "Remove Question" %>
     <%= q.simple_fields_for :question_choices, QuestionChoice.new do |c| %>
       <%= c.input :option, label: "Answer" %>
-      <%= c.input :correct %>
+      <%= c.input :correct, label: "Correct?" %>
       <%= c.check_box :_destroy %>
       <%= c.label :_destroy, "Remove Answer" %>
     <%- end -%>
