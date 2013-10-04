@@ -5,13 +5,15 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    2.times { @quiz.questions.build }
+    2.times do
+      question = @quiz.questions.build
+      2.times { question.question_choices.build }
+    end
   end
 
   def create
     @quiz = Quiz.new(quiz_params)
     @quiz.user = current_user
-    binding.pry
     if @quiz.save
       flash[:notice] = "Quiz created successfully"
       redirect_to quiz_path(@quiz)
@@ -37,6 +39,8 @@ class QuizzesController < ApplicationController
 
   protected
   def quiz_params
-    params.require(:quiz).permit(:title, :age_rating, :private, :question, questions_attributes: [:id, :name])
+    params.require(:quiz).permit(:title, :age_rating, :private,
+      :question, questions_attributes:
+        [:name, question_choices_attributes:[:option, :correct]])
   end
 end

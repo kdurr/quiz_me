@@ -11,3 +11,14 @@
  *= require_self
  *= require_tree .
  */
+.question-answer-set {
+  border: 1px solid red;
+}
+
+.added {
+  border: 1px solid blue;
+}
+
+.answer-set {
+  border: 1px solid green;
+}

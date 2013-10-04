@@ -3,18 +3,4 @@
 </div>
 
 <!-- Add quiz questions and answer inputs here -->
-<%= simple_form_for @quiz do |f| %>
-  <%= f.input :title %>
-  <%= f.simple_fields_for :questions do |q| %>
-    <%= q.input :name, :label => 'Question' %>
-    <%= q.check_box :_destroy %>
-    <%= q.label :_destroy, "Remove Question" %>
-    <%= q.simple_fields_for :question_choices, QuestionChoice.new do |c| %>
-      <%= c.input :option, label: "Answer" %>
-      <%= c.input :correct, label: "Correct?" %>
-      <%= c.check_box :_destroy %>
-      <%= c.label :_destroy, "Remove Answer" %>
-    <%- end -%>
-  <%- end -%><br />
-  <%= f.submit %>
-<%- end -%>
+<%= link_to 'Create New Quiz', new_quiz_path %>
