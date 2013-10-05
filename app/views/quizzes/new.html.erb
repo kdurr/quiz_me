@@ -4,24 +4,24 @@
   <%= f.input :private %>
   <% qcount = 0 %>
   <%= f.simple_fields_for :questions do |q| %>
-  <div class="question-answer-set">
+  <div class='question-answer-set'>
     <%= q.input :name, :label => 'Question' %>
     <div class='options-fields'>
       <% ocount = 0 %>
       <%= q.simple_fields_for :question_choices do |c| %>
-      <div class="answer-set">
-        <%= c.input :option, label: "Answer Option", input_html: {data: {oindex: ocount, qindex: qcount}} %>
-        <%= c.input :correct, label: "Correct?" %>
+      <div class='answer-set'>
+        <%= c.input :option, label: 'Answer Option', input_html: {data: {oindex: ocount, qindex: qcount}} %>
+        <%= c.input :correct, label: 'Correct?' %>
         <% ocount += 1 %>
       </div>
       <% end %>
     </div>
-    <%= link_to 'Add Answer', "#", class: 'add-option' %>
+    <%= link_to 'Add Answer', '#', class: 'add-option' %>
   </div>
   <% qcount += 1 %>
   <% end %><br />
 
-  <%= link_to 'Add Question', "", class: 'add-question' %>
+  <%= link_to 'Add Question', '', class: 'add-question' %>
   <%= f.submit %>
 <% end %>
 
@@ -33,12 +33,11 @@
 
      $('.add-question').click(function(e){
       e.preventDefault();
-      // var $last_question = $('.quiz_questions_name').last();
       var count = $('.question-answer-set').size();
       var $new_field = $questionAnswerTemplate.clone();
 
-      $new_field.find('textarea').attr('id', "quiz_questions_attributes_" + count + "_name");
-      $new_field.find('textarea').attr('name', "quiz[questions_attributes][" + count + "][name]");
+      $new_field.find('textarea').attr('id', 'quiz_questions_attributes_' + count + '_name');
+      $new_field.find('textarea').attr('name', 'quiz[questions_attributes][' + count + '][name]');
       $new_field.addClass('added');
 
       $('.question-answer-set:last').after($new_field);
@@ -54,32 +53,26 @@
       var $newAnswer = $answerTemplate.clone();
 
       var $newOption = $newAnswer.find('textarea');
+      var $newCorrect = $newAnswer.find('input.boolean');
 
-      var ocount = $newOption.data("oindex") + 1;
-      var qcount = $newOption.data("qindex");
-      $newOption.attr("data-oindex", ocount);
+      var ocount = $newOption.data('oindex') + 1;
+      var qcount = $newOption.data('qindex');
 
-      $newOption.attr('id', "quiz_questions_attributes_" + qcount + "_question_choices_attributes_" + ocount + "_option");
-      $newOption.attr('name', "quiz[questions_attributes]["+qcount+"][question_choices_attributes]["+ocount+"][option]");
+      // var ccount = $newCorrect.data('cindex') + 1;
+      // var qccount = $newCorrect.data('qcindex');
+
+      $newOption.attr('data-oindex', ocount);
+      $newCorrect.attr('data-oindex', ocount);
+
+      $newOption.attr('id', 'quiz_questions_attributes_' + qcount + '_question_choices_attributes_' + ocount + '_option');
+      $newOption.attr('name', 'quiz[questions_attributes][' + qcount + '][question_choices_attributes][' + ocount + '][option]');
+
+      $newCorrect.attr('id', 'quiz_questions_attributes_' + qcount + '_question_choices_attributes_' + ocount + '_correct');
+      $newCorrect.attr('name', 'quiz[questions_attributes][' + qcount + '][question_choices_attributes][' + ocount + '][correct]')
       $newAnswer.addClass('added');
 
       $answerTemplate.after($newAnswer);
 
-
-      // var $last_option = $('.quiz_questions_question_choices_option').last();
-      // var count = $('.quiz_questions_question_choices_option').size();
-      // console.log(count);
-      // var $new_option = $last_option.clone();
-      // var question_count = $('.quiz_questions_name').size();
-      // var q_count = question_count - 1
-      // console.log(q_count);
-      // var herr = $new_option.find('textarea').
-      //         attr('id', "quiz_questions_attributes_" + q_count + "_question_choices_attributes_" + count + "_option");
-      // console.log(herr);
-      // var $correct_field = $('.quiz_questions_question_choices_option')
-
-      // $new_option.find('textarea').attr('name', "quiz[questions_attributes][" + q_count + "][question_choices_attributes][" + count + "][option]");
-      // $(this).before($new_option);
      });
     });
   </script>

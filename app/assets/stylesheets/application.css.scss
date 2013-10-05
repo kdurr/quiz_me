@@ -9,8 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+
  */
+@import 'bourbon';
+@import 'neat';
+@import 'index';
+
 .question-answer-set {
   border: 1px solid red;
 }
@@ -21,4 +25,15 @@
 
 .answer-set {
   border: 1px solid green;
+}
+
+html {
+  font-family: Helvetica;
+}
+
+nav {
+  border: solid 1px gray;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #1abc9c;
 }
