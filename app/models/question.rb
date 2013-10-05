@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
     inverse_of: :question
   has_many :question_choices,
     inverse_of: :question,
-    dependent: :destroy
+    :dependent => :destroy
   accepts_nested_attributes_for :question_choices, allow_destroy: true
 
   validates_presence_of :name

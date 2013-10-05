@@ -14,8 +14,9 @@
 @import 'bourbon';
 @import 'neat';
 @import 'index';
+@import 'new';
 
-.question-answer-set {
+/*.question-answer-set {
   border: 1px solid red;
 }
 
@@ -25,15 +26,20 @@
 
 .answer-set {
   border: 1px solid green;
-}
+}*/
 
 html {
+  @include outer-container;
   font-family: Helvetica;
 }
 
 nav {
+  @include fill-parent;
+  display: inline-block;
   border: solid 1px gray;
   padding: 15px;
   border-radius: 5px;
   background-color: #1abc9c;
+  text-align: right;
 }
+

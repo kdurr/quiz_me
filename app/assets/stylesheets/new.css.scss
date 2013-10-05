@@ -1,0 +1,41 @@
+section {
+  @include outer-container;
+  .simple_form { @include span-columns(9); }
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.simple_form {
+  margin-top: 10px;
+}
+
+.question-answer-set {
+  margin-left: 50px;
+}
+
+.options-fields {
+  margin: 5px 0 5px 50px;
+}
+
+.add-option {
+  border: 1px solid #3498db;
+  background-color: #3498db;
+  border-radius: 5px;
+  padding: 2px;
+  margin-left: 50px;
+}
+
+.add-question {
+  border: 1px solid #3498db;
+  background-color: #3498db;
+  border-radius: 5px;
+  padding: 2px;
+  margin-bottom: 20px;
+}

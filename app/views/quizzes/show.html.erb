@@ -2,5 +2,13 @@
   <strong>Title: </strong><%= @quiz.title %>
 </div>
 
+<div>
+  <strong>Question</strong>
+  <% @quiz.each do |q| %>
+    <% q.question %>
+    <% q.question_choice %>
+  <% end %>
+</div>
+
 <!-- Add quiz questions and answer inputs here -->
 <%= link_to 'Create New Quiz', new_quiz_path %>
