@@ -15,6 +15,7 @@
 @import 'neat';
 @import 'index';
 @import 'new';
+@import 'show';
 
 /*.question-answer-set {
   border: 1px solid red;
@@ -28,18 +29,52 @@
   border: 1px solid green;
 }*/
 
-html {
-  @include outer-container;
-  font-family: Helvetica;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $verdana;
+  background-color: #D7FFF3;
+  // background: url("");
+}
+
+li {
+  list-style-type: none;
+  display: inline-block;
+  padding-right: 20px;
 }
 
 nav {
-  @include fill-parent;
   display: inline-block;
-  border: solid 1px gray;
-  padding: 15px;
-  border-radius: 5px;
-  background-color: #1abc9c;
-  text-align: right;
+  @include linear-gradient(#8ccdae, #6fa88d);
+  border-bottom: #5f9e80;
+  background-color: gray;
+  height: 55px;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 }
 
+.primary-nav {
+  float: left;
+}
+
+.secondary-nav {
+  float: right;
+}
+
+.content {
+  @include outer-container;
+  position: relative;
+  z-index: 1;
+  padding: 60px 0;
+}
+
+#user_email, #user_password, #user_password_confirmation, #user_current_password, #quiz_title, textarea {
+  height: 34px;
+  width: 300px;
+  font-size: 14px;
+  vertical-align: middle;
+  padding: 5px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+}

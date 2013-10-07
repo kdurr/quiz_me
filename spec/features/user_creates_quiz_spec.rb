@@ -5,18 +5,20 @@ feature 'user creates a quiz', %Q{
   I want to create a quiz
   so that I can test my friends
 } do
-
+#
 #   Acceptance Criteria:
+#
 # * I must provide a title
 # * I must provide one or more questions
 # * For each question I must provide multiple choice answers
 # * I must specify which answer is correct
 # * I must mark if it is not an age appropriate quiz
 # * I have the option to provide a link for additional information on a question
-let(:user){FactoryGirl.create(:user)}
 
   scenario 'authenticated user creates quiz' do
+    user = FactoryGirl.create(:user)
     sign_in_as(user)
+
     visit new_quiz_path
     quiz_name = "Quiz Name"
     fill_in "Title", with: quiz_name
