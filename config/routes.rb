@@ -1,19 +1,10 @@
 BreakableToy::Application.routes.draw do
-  devise_for :users
-  resources :users
-  resources :quizzes do
-    resources :questions
-  end
-
-  resources :questions do
-    :question_choices
-  end
-
+  devise_for :models
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#index'
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -17,19 +17,23 @@ feature 'unauthenticated user signs up', %Q{
 
   scenario 'providing valid required information' do
     visit users_path
-    click_link 'Sign up'
-    user = FactoryGirl.create(:user)
-    fill_in 'Password confirmation', with: 'password', match: :prefer_exact
-    click_on 'Sign up', match: :prefer_exact
-    user.save!
-    save_and_open_page
+    click_link 'Sign Up'
+    fill_in 'First name', with: 'John'
+    fill_in 'Last name', with: 'Smith'
+    fill_in 'Username', with: 'jsmith'
+    fill_in 'Email', with: 'jsmith@example.com'
+    fill_in 'Age', with: 12
+    fill_in 'Password', with: 'password'
+    fill_in 'Password Confirmation', with: 'password'
+    click_button 'Sign Me Up!'
 
-    expect(page).to have_content("successfully")
+    expect(page).to have_content("You are now signed up!")
     expect(page).to have_content("Sign Out")
   end
 
-  scenario 'invalid information is supplied' 
+  scenario 'required information is not supplied' do
+  end
 
-  scenario 'the password confirmation fails'
+  scenario 'the password confirmation fails' do
+  end  
 end
-
