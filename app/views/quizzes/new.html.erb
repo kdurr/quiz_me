@@ -37,22 +37,34 @@
   <script>
     $(function(){
      var $questionAnswerTemplate = $('.question-answer-set:first').clone();
-     console.log($questionAnswerTemplate);
 
      $('.add-question').click(function(e){
       e.preventDefault();
       var count = $('.question-answer-set').size();
       var $new_field = $questionAnswerTemplate.clone();
+      var $newQuestion = $new_field.find('.quiz_questions_name textarea');
+      var $newOption = $new_field.find('.quiz_questions_question_choices_option textarea');
+      var $newCorrect = $new_field.find('input.boolean');
+      console.log($newCorrect);
 
-      $new_field.find('textarea').attr('id', 'quiz_questions_attributes_' + count + '_name');
-      $new_field.find('textarea').attr('name', 'quiz[questions_attributes][' + count + '][name]');
+      $newQuestion.attr('id', 'quiz_questions_attributes_' + count + '_name');
+      $newQuestion.attr('name', 'quiz[questions_attributes][' + count + '][name]');
+      $newOption.first().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_0_option');
+      $newOption.first().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][0][option]');
+      $newOption.last().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_1_option');
+      $newOption.last().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][1][option]');
+      $newCorrect.first().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_0_correct');
+      $newCorrect.first().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][0][correct]')
+      $newCorrect.last().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_1_correct');
+      $newCorrect.last().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][1][correct]')
       $new_field.addClass('added');
 
       $('.question-answer-set:last').after($new_field);
     });
-
+    
     $('.add-option').click(function(e){
       e.preventDefault();
+      console.log("success!")
       var $target = $(e.target);
       var $answerSet = $target.siblings('.options-fields').find('.answer-set');
       var count = $answerSet.size();

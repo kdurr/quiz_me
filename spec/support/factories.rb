@@ -6,5 +6,6 @@ FactoryGirl.define do
     age 8
     email "example@abc.com"
     password "password"
+    password_confirmation "password"
   end
 end
