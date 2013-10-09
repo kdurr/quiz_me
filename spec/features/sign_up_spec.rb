@@ -16,14 +16,13 @@ feature 'unregistered user signs up', %Q{
   # * I must provide my age
 
   scenario 'providing valid required information' do
-    visit users_path
+    visit quizzes_path
     click_on 'Sign Up'
     user = FactoryGirl.create(:user)
-    within ".form-actions" do
+    within(".form-actions") do
       click_on 'Sign up'
     end
     user.save!
-    save_and_open_page
 
     expect(page).to have_content("successfully")
     expect(page).to have_content("Sign Out")

@@ -16,7 +16,8 @@
         <%= q.simple_fields_for :question_choices do |c| %>
         <div class='answer-set'>
           <%= c.input :option, label: 'Answer Option', input_html: {data: {oindex: ocount, qindex: qcount}} %>
-          <%= c.input :correct, :label => false, :inline_label => true %>
+          <%= c.input :correct, label: false, :inline_label => true %>
+
           <% ocount += 1 %>
         </div>
         <% end %>
@@ -36,6 +37,7 @@
 <%= content_for :extra_footer do %>
   <script>
     $(function(){
+
      var $questionAnswerTemplate = $('.question-answer-set:first').clone();
 
      $('.add-question').click(function(e){

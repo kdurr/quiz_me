@@ -17,7 +17,8 @@ feature 'user creates a quiz', %Q{
 
   scenario 'authenticated user creates quiz' do
     user = FactoryGirl.create(:user)
-    sign_in_as(user)
+    visit new_user_session_path
+    sign_in_as user
 
     visit new_quiz_path
     quiz_name = "Quiz Name"

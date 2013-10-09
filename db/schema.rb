@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20130918153703) do
   end
 
   create_table "question_choices", force: true do |t|
-    t.string   "option",      null: false
+    t.text     "option",      null: false
     t.boolean  "correct"
     t.integer  "question_id"
     t.datetime "created_at"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20130918153703) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "name",       null: false
+    t.text     "name",       null: false
     t.integer  "quiz_id"
     t.datetime "created_at"
     t.datetime "updated_at"
