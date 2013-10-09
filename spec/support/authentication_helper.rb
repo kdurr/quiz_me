@@ -5,6 +5,6 @@ module AuthenticationHelper
     fill_in "Password", with: user.password
     click_button "Sign in", match: :prefer_exact
 
-    expect(page).to_not have_content "Not Found"
+    expect(page).to have_content "Sign Out"
   end
 end
