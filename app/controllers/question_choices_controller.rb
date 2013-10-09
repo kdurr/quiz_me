@@ -5,9 +5,6 @@ class QuestionChoicesController < ApplicationController
 
   def create
     @question_choice = QuestionChoice.new(question_choice_params)
-    if @question_choice.save
-      redirect
-
   end
 
   protected
