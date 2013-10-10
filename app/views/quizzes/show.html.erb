@@ -8,11 +8,13 @@
     <strong>Question:</strong>
     <%= q.name %> <br />
     <div class='answer-field'>
-      <% q.question_choices.each do |a| %>
-      <div class="answer-option">
-          <%= a.option %><br />
-      </div>
+      <% q.question_choices.each_with_index do |choice, index| %>
+        <%= simple_form_for [choice, choice.build_answer] do |f| %>
+          <%= f.submit choice.option %>
+        <% end %>
       <% end %>
+      <div class="answer-option">
+      </div>
     </div>
   <% end %>
 </div>
