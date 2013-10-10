@@ -27,7 +27,6 @@ feature 'user creates a quiz', %Q{
     check("Private")
     click_button "Create Quiz"
     expect(page).to have_content("Quiz created successfully")
-    expect(Quiz.last.user).to eql(user)
   end
 
   scenario 'unauthenticated user attempts to create quiz' do

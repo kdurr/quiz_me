@@ -18,14 +18,22 @@ feature 'unregistered user signs up', %Q{
   scenario 'providing valid required information' do
     visit quizzes_path
     click_on 'Sign Up'
-    user = FactoryGirl.create(:user)
+
+    fill_in "First name", with: "Tina"
+    fill_in "Last name", with: "Durr"
+    fill_in "Username", with: "tdurr"
+    fill_in "Age", with: 10
+    fill_in "Email", with: "tdurr@abc.com"
+    fill_in "user_password", with: "password"
+    fill_in "Password confirmation", with: "password"
+    
     within(".form-actions") do
-      click_on 'Sign up'
+    click_on 'Sign up'
     end
-    user.save!
+
 
     expect(page).to have_content("successfully")
-    expect(page).to have_content("Sign Out")
+    expect(page).to have_content("Logout")
   end
 
   scenario 'invalid information is supplied' 

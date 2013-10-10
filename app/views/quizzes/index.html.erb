@@ -2,3 +2,25 @@
 <div class='create-quiz'>
   <%= link_to 'Create a Quiz', new_quiz_path %>
 </div>
+
+
+<div class='show-quiz'>
+  <% @quiz.each do |quest| %>
+    <strong>Title:</strong>
+    <%= quest.title %>
+    <% if false %>
+    <% quest.questions.each do |q| %>
+      <strong>Question:</strong>
+      <%= q.name %> <br />
+      <div class='answer-field'>
+        <% q.question_choices.each do |a| %>
+        <strong>Answers:</strong>
+          <%= a.option %><br />
+        <% end %>
+      </div>
+
+    <% end %>
+    <% end %>
+      <%= link_to 'Take this Quiz!', quiz_path(quest) %><br />
+  <% end %>
+</div>

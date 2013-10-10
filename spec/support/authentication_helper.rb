@@ -3,8 +3,10 @@ module AuthenticationHelper
     visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
-    click_button "Sign in", match: :prefer_exact
 
-    expect(page).to have_content "Sign Out"
+      click_button "Sign in"
+
+
+    expect(page).to have_content("Logout")
   end
 end

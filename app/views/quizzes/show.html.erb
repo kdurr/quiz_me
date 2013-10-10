@@ -1,17 +1,29 @@
 <section>
 <div class="quiz-title">
-  <h3><strong><%= @quiz.title %></strong></h3>
+  <h3>Take Quiz: <strong><%= @quiz.title %></strong></h3>
 </div>
 
-<div>
+<div class="q_a_set">
   <% @quiz.questions.each do |q| %>
     <strong>Question:</strong>
     <%= q.name %> <br />
     <div class='answer-field'>
       <% q.question_choices.each do |a| %>
-      <strong>Answers:</strong>
-        <%= a.option %><br />
+      <div class="answer-option">
+          <%= a.option %><br />
+      </div>
       <% end %>
     </div>
   <% end %>
 </div>
+
+<%= content_for :extra_footer do %>
+<script>
+$(function() {
+  $('.answer-option').one('click', function(e){
+    e.preventDefault();
+    $(e.target).css('background-color', '#9b59b6');
+  });
+});
+</script>
+<% end %>

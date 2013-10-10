@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>BreakableToy</title>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+ <%= stylesheet_link_tag    "application", media: "all" %>
+ <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -43,8 +43,3 @@
 </body>
 </html>
 
-<script>
-  $(function(){
-    $('#flash-msg').fadeOut(3000);
-  })
-</script>

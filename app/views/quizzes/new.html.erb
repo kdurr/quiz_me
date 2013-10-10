@@ -7,27 +7,17 @@
     <%= f.input :age_rating, collection: 3..110 %>
     <%= f.input :private, :label => false, :inline_label => true %>
   </div>
-    <% qcount = 0 %>
     <%= f.simple_fields_for :questions do |q| %>
     <div class='question-answer-set'>
-      <%= q.input :name, :label => 'Question' %>
-      <div class='options-fields'>
-        <% ocount = 0 %>
+     <%= render 'question_fields', f: q %>
         <%= q.simple_fields_for :question_choices do |c| %>
-        <div class='answer-set'>
-          <%= c.input :option, label: 'Answer Option', input_html: {data: {oindex: ocount, qindex: qcount}} %>
-          <%= c.input :correct, label: false, :inline_label => true %>
-
-          <% ocount += 1 %>
-        </div>
+        <%= render 'question_choice_fields', f: c %>
         <% end %>
-      </div>
-      <%= link_to 'Add Answer', '#', class: 'add-option' %><br />
+      <%= link_to_add_fields 'Add Answer', q, :question_choices %><br />
     </div>
-    <% qcount += 1 %>
     <% end %><br />
 
-    <%= link_to 'Add Question', '', class: 'add-question' %><br />
+    <%= link_to_add_fields 'Add Question', f, :questions %><br />
     <div id='sub'>
       <%= f.submit %>
     </div>
@@ -36,62 +26,79 @@
 
 <%= content_for :extra_footer do %>
   <script>
-    $(function(){
-
-     var $questionAnswerTemplate = $('.question-answer-set:first').clone();
-
-     $('.add-question').click(function(e){
+    $(function() {
+      $('form').on('click', '.remove_fields', function(e) {
+      $(this).prev('input[type=hidden]').val('1');
+      $(this).closest('fieldset').hide();
       e.preventDefault();
-      var count = $('.question-answer-set').size();
-      var $new_field = $questionAnswerTemplate.clone();
-      var $newQuestion = $new_field.find('.quiz_questions_name textarea');
-      var $newOption = $new_field.find('.quiz_questions_question_choices_option textarea');
-      var $newCorrect = $new_field.find('input.boolean');
-
-      $newQuestion.attr('id', 'quiz_questions_attributes_' + count + '_name');
-      $newQuestion.attr('name', 'quiz[questions_attributes][' + count + '][name]');
-      $newOption.first().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_0_option');
-      $newOption.first().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][0][option]');
-      $newOption.last().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_1_option');
-      $newOption.last().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][1][option]');
-      $newCorrect.first().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_0_correct');
-      $newCorrect.first().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][0][correct]')
-      $newCorrect.last().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_1_correct');
-      $newCorrect.last().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][1][correct]')
-      $new_field.addClass('added');
-
-      $('.question-answer-set:last').after($new_field);
-    });
-    
-    $('.add-option').click(function(e){
-      e.preventDefault();
-      console.log("success!")
-      var $target = $(e.target);
-      var $answerSet = $target.siblings('.options-fields').find('.answer-set');
-      var count = $answerSet.size();
-      var $answerTemplate = $answerSet.last();
+      });
       
-      var $newAnswer = $answerTemplate.clone();
-
-      var $newOption = $newAnswer.find('textarea');
-      var $newCorrect = $newAnswer.find('input.boolean');
-
-      var ocount = $newOption.data('oindex') + 1;
-      var qcount = $newOption.data('qindex');
-
-      $newOption.attr('data-oindex', ocount);
-      $newCorrect.attr('data-oindex', ocount);
-
-      $newOption.attr('id', 'quiz_questions_attributes_' + qcount + '_question_choices_attributes_' + ocount + '_option');
-      $newOption.attr('name', 'quiz[questions_attributes][' + qcount + '][question_choices_attributes][' + ocount + '][option]');
-
-      $newCorrect.attr('id', 'quiz_questions_attributes_' + qcount + '_question_choices_attributes_' + ocount + '_correct');
-      $newCorrect.attr('name', 'quiz[questions_attributes][' + qcount + '][question_choices_attributes][' + ocount + '][correct]')
-      $newAnswer.addClass('added');
-
-      $answerTemplate.after($newAnswer);
-
-     });
+      $('form').on('click', '.add_fields', function(e) {
+        var regexp, time;
+        time = new Date().getTime();
+        regexp = new RegExp($(this).data('id'), 'g');
+        $(this).before($(this).data('fields').replace(regexp, time));
+        $(this).addClass('added');
+        e.preventDefault();
+      });
     });
+
+
+    // $(function(){
+    //  var $questionAnswerTemplate = $('.question-answer-set:first').clone();
+
+    //  $('.add-question').click(function(e){
+    //   e.preventDefault();
+    //   var count = $('.question-answer-set').size();
+    //   var $new_field = $questionAnswerTemplate.clone();
+    //   var $newQuestion = $new_field.find('.quiz_questions_name textarea');
+    //   var $newOption = $new_field.find('.quiz_questions_question_choices_option textarea');
+    //   var $newCorrect = $new_field.find('input.boolean');
+
+    //   $newQuestion.attr('id', 'quiz_questions_attributes_' + count + '_name');
+    //   $newQuestion.attr('name', 'quiz[questions_attributes][' + count + '][name]');
+    //   $newOption.first().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_0_option');
+    //   $newOption.first().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][0][option]');
+    //   $newOption.last().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_1_option');
+    //   $newOption.last().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][1][option]');
+    //   $newCorrect.first().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_0_correct');
+    //   $newCorrect.first().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][0][correct]')
+    //   $newCorrect.last().attr('id', 'quiz_questions_attributes_' + count + '_question_choices_attributes_1_correct');
+    //   $newCorrect.last().attr('name', 'quiz[questions_attributes][' + count + '][question_choices_attributes][1][correct]')
+    //   $new_field.addClass('added');
+
+    //   $('.question-answer-set:last').after($new_field);
+    // });
+    
+    // $('.add-option').click(function(e){
+    //   e.preventDefault();
+    //   console.log("success!")
+    //   var $target = $(e.target);
+    //   var $answerSet = $target.siblings('.options-fields').find('.answer-set');
+    //   var count = $answerSet.size();
+    //   var $answerTemplate = $answerSet.last();
+      
+    //   var $newAnswer = $answerTemplate.clone();
+
+    //   var $newOption = $newAnswer.find('textarea');
+    //   var $newCorrect = $newAnswer.find('input.boolean');
+
+    //   var ocount = $newOption.data('oindex') + 1;
+    //   var qcount = $newOption.data('qindex');
+
+    //   $newOption.attr('data-oindex', ocount);
+    //   $newCorrect.attr('data-oindex', ocount);
+
+    //   $newOption.attr('id', 'quiz_questions_attributes_' + qcount + '_question_choices_attributes_' + ocount + '_option');
+    //   $newOption.attr('name', 'quiz[questions_attributes][' + qcount + '][question_choices_attributes][' + ocount + '][option]');
+
+    //   $newCorrect.attr('id', 'quiz_questions_attributes_' + qcount + '_question_choices_attributes_' + ocount + '_correct');
+    //   $newCorrect.attr('name', 'quiz[questions_attributes][' + qcount + '][question_choices_attributes][' + ocount + '][correct]')
+    //   $newAnswer.addClass('added');
+
+    //   $answerTemplate.after($newAnswer);
+
+    //  });
+    // });
   </script>
 <% end %>

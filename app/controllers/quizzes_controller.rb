@@ -3,6 +3,8 @@ class QuizzesController < ApplicationController
 
   # verify owner method to match current user in before
   def index
+    @quiz = Quiz.all
+    # @this_quiz = Quiz.find(params[:id])
   end
 
   def new
@@ -38,6 +40,7 @@ class QuizzesController < ApplicationController
       end
     end
   end
+
 
   protected
   def quiz_params
