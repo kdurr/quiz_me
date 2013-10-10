@@ -1,0 +1,69 @@
+section {
+  @include span-columns(10);
+  @include shift(1);
+  padding-left: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.control-label {
+  display: inline-block;
+}
+
+.options-fields {
+  margin: 5px 0 5px 50px;
+}
+
+.add-option {
+  background-color: #3498db;
+  @include linear-gradient(#8ccdae, #6fa88d);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 50px;
+}
+
+.add-question {
+  background-color: #3498db;
+  @include linear-gradient(#8ccdae, #6fa88d);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 15px 0;
+}
+
+.question-answer-set {
+  margin-top: 15px;
+  border: 1px solid gray;
+  padding: 5px 0 10px 5px;
+  width: 870px;
+}
+
+.title_field {
+  border: 1px solid gray;
+  margin-top: 15px;
+  border: 1px solid gray;
+  padding: 5px 0 10px 5px;
+  width: 870px;
+}
+
+.quiz_questions_question_choices_option {
+  display: inline-block;
+}
+
+.quiz_questions_question_choices_correct {
+  display: inline-block;
+}
+
+#sub {
+  margin: 15px 0;
+}
+
+

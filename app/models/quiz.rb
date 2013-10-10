@@ -4,7 +4,12 @@ class Quiz < ActiveRecord::Base
   has_many :submissions,
     inverse_of: :quiz
   has_many :questions,
-    inverse_of: :quiz
+    inverse_of: :quiz,
+    :dependent => :destroy
+  accepts_nested_attributes_for :questions,
+    :reject_if => lambda { |a| a[:name].blank? },
+    :allow_destroy => true
 
   validates_presence_of :title
+  validates_presence_of :user
 end

@@ -2,13 +2,43 @@
 <html>
 <head>
   <title>BreakableToy</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+ <%= stylesheet_link_tag    "application", media: "all" %>
+ <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <nav>
+  <ul>
+    <div class='primary-nav'>
+      <li><strong><%= link_to 'Quiz Me', quizzes_path %></strong></li>
+      <li><%= link_to 'Create A Quiz', new_quiz_path %></li>
+      <li><%= link_to 'Take A Quiz', quizzes_path %></li>
+    </div>
+    <div class='secondary-nav'>
+    <% if user_signed_in? %>
+      <li><strong><%= current_user.username %></strong></li>
+      <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <li><%= link_to "Login", new_user_session_path %></li>
+    <% end %>
+    </div>
+  </ul>
+</nav>
+
+<div class='content'>
+  <div id='flash-msg'>
+    <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+    <% end -%>
+  </div>
+  <%= yield %>
+
+  <%= yield :extra_footer %>
+</div>
  <ul>
    <li><%= link_to 'Sign Up', new_user_path %></li>
  </ul> 
@@ -23,3 +53,4 @@
 
 </body>
 </html>
+
