@@ -28,6 +28,7 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
+    @submission = Submission.new
   end
 
   def update

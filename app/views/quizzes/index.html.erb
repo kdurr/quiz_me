@@ -5,24 +5,14 @@
   </div>
 
 
-  <div class='show-quiz'>
     <% @quiz.each do |quest| %>
-      <strong>Title:</strong>
-      <%= quest.title %>
-      <% if false %>
-      <% quest.questions.each do |q| %>
-        <strong>Question:</strong>
-        <%= q.name %> <br />
-        <div class='answer-field'>
-          <% q.question_choices.each do |a| %>
-          <strong>Answer:</strong>
-            <%= a.option %><br />
-          <% end %>
+      <div class='show-quiz'>
+        <strong>Title:</strong>
+        <%= quest.title %>
+        <div class="take-me">
+          <%= link_to 'Take this Quiz!', quiz_path(quest) %><br />
         </div>
-
-      <% end %>
-      <% end %>
-        <%= link_to 'Take this Quiz!', quiz_path(quest) %><br />
+      </div>
     <% end %>
-  </div>
+
 </section>

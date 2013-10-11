@@ -4,26 +4,36 @@
 </div>
 
 <div class="q_a_set">
-  <% @quiz.questions.each do |q| %>
-    <strong>Question:</strong>
-    <%= q.name %> <br />
-    <div class='answer-field'>
-      <% q.question_choices.each_with_index do |choice, index| %>
-        <%= simple_form_for [choice, choice.build_answer] do |f| %>
-          <%= f.submit choice.option %>
+  <%= simple_form_for :submission do |f|  %>
+    <% @quiz.questions.each do |q| %>
+      <strong>Question:</strong>
+      <%= q.name %><br />
+      <div class='answer-field'>
+        <%= f.simple_fields_for :answers do |c| %>
+          <%= c.hidden_field :question, :value => q %>
+          <%= c.input :question_choice, as: :radio_buttons, collection: q.question_choices, value_method: :id, label_method: :option, label: q.name %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+    <%= f.submit %>
   <% end %>
 </div>
 
 <%= content_for :extra_footer do %>
 <script>
 $(function() {
-  $('#new_answer').one('click', function(e){
+  $('#new_answer').on('click', function(e){
     e.preventDefault();
     $(e.target).css('background-color', '#9b59b6');
   });
 });
 </script>
+<% end %>
+
+<% if false %>
+  <% q.question_choices.each_with_index do |choice, index| %>
+    <%= simple_form_for [choice, choice.build_answer] do |f| %>
+      <%= f.submit choice.option %>
+    <% end %>
+  <% end %>
 <% end %>
