@@ -13,8 +13,6 @@
           <%= f.submit choice.option %>
         <% end %>
       <% end %>
-      <div class="answer-option">
-      </div>
     </div>
   <% end %>
 </div>
@@ -22,7 +20,7 @@
 <%= content_for :extra_footer do %>
 <script>
 $(function() {
-  $('.answer-option').one('click', function(e){
+  $('#new_answer').one('click', function(e){
     e.preventDefault();
     $(e.target).css('background-color', '#9b59b6');
   });

@@ -21,13 +21,6 @@ class QuizzesController < ApplicationController
     if @quiz.save
       flash[:notice] = "Quiz created successfully"
       redirect_to quiz_path(@quiz)
-      # @quiz.questions.each do |q|
-      #   q.question_choices.each do |c|
-      #     if c.correct == "true"
-      #       c.option
-      #     end
-      #   end
-      # end
     else
       render :new
     end

@@ -12,4 +12,12 @@ class Quiz < ActiveRecord::Base
 
   validates_presence_of :title
   validates_presence_of :user
+
+  # @quiz.questions.each do |q|
+  #   q.question_choices.each do |c|
+  #     if c.correct == "true"
+  #       c.option
+  #     end
+  #   end
+  # end
 end

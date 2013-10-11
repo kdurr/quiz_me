@@ -1,3 +1,8 @@
+section {
+  @include span-columns(10);
+  @include shift(1);
+}
+
 .create-quiz {
   display: inline-block;
   padding: 5px;

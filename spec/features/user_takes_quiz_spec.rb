@@ -4,7 +4,7 @@ feature 'nerd can take a quiz', %Q{
   As a authenticated trivia nerd
   I can take a quiz
   So that I can reaffirm my genius
-} do
+  } do
   #
   # Acceptance Criteria
   #
