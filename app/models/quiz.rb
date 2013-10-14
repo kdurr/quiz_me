@@ -8,16 +8,11 @@ class Quiz < ActiveRecord::Base
     :dependent => :destroy
   accepts_nested_attributes_for :questions,
     :reject_if => lambda { |a| a[:name].blank? },
-    :allow_destroy => true
+    allow_destroy: true
+  accepts_nested_attributes_for :submissions,
+    :reject_if => lambda { |a| a[:name].blank? },
+    allow_destroy: true
 
   validates_presence_of :title
   validates_presence_of :user
-
-  # @quiz.questions.each do |q|
-  #   q.question_choices.each do |c|
-  #     if c.correct == "true"
-  #       c.option
-  #     end
-  #   end
-  # end
 end

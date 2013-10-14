@@ -6,7 +6,12 @@ class Question < ActiveRecord::Base
   has_many :question_choices,
     inverse_of: :question,
     :dependent => :destroy
+  has_many :submissions,
+    through: :answers
   accepts_nested_attributes_for :question_choices, 
+    :reject_if => lambda { |a| a[:option].blank? },
+    allow_destroy: true
+  accepts_nested_attributes_for :answers,
     :reject_if => lambda { |a| a[:option].blank? },
     allow_destroy: true
 

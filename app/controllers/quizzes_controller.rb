@@ -4,7 +4,6 @@ class QuizzesController < ApplicationController
   # verify owner method to match current user in before
   def index
     @quiz = Quiz.all
-    # @this_quiz = Quiz.find(params[:id])
   end
 
   def new
@@ -22,13 +21,14 @@ class QuizzesController < ApplicationController
       flash[:notice] = "Quiz created successfully"
       redirect_to quiz_path(@quiz)
     else
-      render :new
+      flash[:notice] = "Please fill in blank fields"
+      redirect_to new_quiz_path
     end
   end
 
   def show
     @quiz = Quiz.find(params[:id])
-    @submission = Submission.new
+    @submission = @quiz.submissions.build
   end
 
   def update
@@ -47,6 +47,7 @@ class QuizzesController < ApplicationController
   def quiz_params
     params.require(:quiz).permit(:title, :age_rating, :private,
       :question, questions_attributes:
-        [:name, question_choices_attributes:[:option, :correct]])
+        [:name, question_choices_attributes:[:option, :correct]],
+        submissions_attributes: [:result])
   end
 end

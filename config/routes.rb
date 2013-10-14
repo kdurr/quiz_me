@@ -3,6 +3,7 @@ BreakableToy::Application.routes.draw do
   # resources :users
   resources :quizzes do
     resources :questions
+    resources :submissions
   end
 
   resources :questions do
@@ -10,6 +11,10 @@ BreakableToy::Application.routes.draw do
   end
 
   resources :question_choices do
+    resources :answer
+  end
+
+  resources :submissions do
     resources :answers
   end
 
