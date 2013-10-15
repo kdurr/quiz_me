@@ -21,9 +21,8 @@
 <strong>Taken Quizzes: </strong>
 <% if @user.submissions.present? %>
   <% @user.submissions.each do |s| %>
-    <% s.quizzes.each do |n| %>
-      <%= n.title %>
-    <% end %>
+    <%= s.quiz.title %>
+    <%= s.result %>%
   <% end %>
 <% else %>
   <div><%= @user.username %> has not taken any quizzes yet!</div>

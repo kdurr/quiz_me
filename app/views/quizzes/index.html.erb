@@ -1,16 +1,15 @@
 <section>
-  <br />
+  <%= search_form_for @q do |f| %>
+    <div class="field">
+      <%= f.label :title_cont, "Quiz title contains" %>
+      <%= f.text_field :title_cont %>
+      <%= f.submit "Search" %>
+    </div>
+  <% end %>
+
   <div class='create-quiz'>
     <%= link_to 'Create a Quiz', new_quiz_path %>
   </div>
-
-  <%= search_form_for @q do |f| %>
-    <div class="field">
-      <%= f.label :title_cont, "Name contains" %>
-      <%= f.text_field :title_cont %>
-    </div>
-    <div class="actions"><%= f.submit "Search" %></div>
-  <% end %>
 
     <% @quiz.each do |quest| %>
     <% if !quest.private %>
