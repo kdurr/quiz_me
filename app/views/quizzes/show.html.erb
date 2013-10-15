@@ -9,11 +9,13 @@
       <strong>Question:</strong>
       <%= q.name %><br />
       <div class='answer-field'>
-          <%= f.hidden_field :question, :value => q %>
-          <%= f.input :result, as: :radio_buttons, 
-            collection: q.question_choices, value_method: :option, 
+          <%= f.simple_fields_for :answer do |a| %>
+          <%= a.hidden_field :question, :value => q %>
+          <%= a.input :question_choices, as: :radio_buttons, 
+            collection: q.question_choices, value_method: :id, 
             label_method: :option, label: false, input_html: { name: "submission[result][#{q.id}]" } %>
       </div>
+    <% end %>
     <% end %>
     <%= f.submit "Submit" %>
   <% end %>
