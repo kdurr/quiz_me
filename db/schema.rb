@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130918153703) do
     t.string   "title",                      null: false
     t.integer  "age_rating",                 null: false
     t.boolean  "private",    default: false
+    t.text     "news_url"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

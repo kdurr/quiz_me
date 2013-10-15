@@ -4,6 +4,13 @@
     <%= link_to 'Create a Quiz', new_quiz_path %>
   </div>
 
+  <%= search_form_for @search do |f| %>
+    <div class="field">
+      <%= f.label %>
+      <%=  %>
+    </div>
+  <% end %>
+
     <% @quiz.each do |quest| %>
     <% if !quest.private %>
         <% if current_user.present? && current_user.age >= quest.age_rating %>

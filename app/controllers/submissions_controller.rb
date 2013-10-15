@@ -12,12 +12,6 @@ class SubmissionsController < ApplicationController
     @submission.user = current_user
 
     if @submission.save
-      # @quiz.questions.each do |c|
-      #   c.question_choices.each do |o|
-      #    if o.correct == @submission.result
-      #    end
-      #   end
-      # end
       redirect_to quizzes_path,
         notice: "Quiz taken!"
     else
@@ -27,7 +21,7 @@ class SubmissionsController < ApplicationController
 
   protected
   def submission_params
-    params.require(:submission).permit(:result, :answers_attributes)
+    params.require(:submission).permit(:result, :answers_attributes => [:question_id, :question_choice_id])
   end
 
 end

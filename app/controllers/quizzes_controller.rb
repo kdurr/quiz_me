@@ -3,6 +3,8 @@ class QuizzesController < ApplicationController
 
   def index
     @quiz = Quiz.all
+    @search = Quiz.search(params[:q])
+    @quizzes = @search.result
   end
 
   def new
@@ -28,6 +30,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @submission = @quiz.submissions.build
+    @submission.answers.build
   end
 
   def update

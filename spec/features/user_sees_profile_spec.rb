@@ -21,5 +21,4 @@ feature 'have a public profile', %Q{
 
   scenario 'viewers can see my quiz scores'
 
-  scenario 'viewer can see my avatar'
 end
