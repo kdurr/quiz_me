@@ -3,8 +3,8 @@ class QuizzesController < ApplicationController
 
   def index
     @quiz = Quiz.all
-    @search = Quiz.search(params[:q])
-    @quizzes = @search.result
+    @q = Quiz.search(params[:q])
+    @quizzes = @q.result(distinct: true)
   end
 
   def new
