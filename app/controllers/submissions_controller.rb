@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
 
   def new
     @submission = Submission.new
-    @submission.answers.build
+    @answers = @submission.answers.build
   end
 
   def create

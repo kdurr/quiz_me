@@ -1,7 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
-  # verify owner method to match current user in before
   def index
     @quiz = Quiz.all
   end

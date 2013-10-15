@@ -1,6 +1,4 @@
 class Submission < ActiveRecord::Base
-  # serialize :result
-  
   belongs_to :user,
     inverse_of: :submissions
   belongs_to :quiz,
@@ -10,6 +8,6 @@ class Submission < ActiveRecord::Base
   accepts_nested_attributes_for :answers
 
   def self.save_results
-    @result = params[:result]
+    @result = params[:result, answers_attributes:[:selection]]
   end
 end
