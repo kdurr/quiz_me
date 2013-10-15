@@ -1,10 +1,8 @@
 class QuizzesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
 
-  # verify owner method to match current user in before
   def index
     @quiz = Quiz.all
-    # @this_quiz = Quiz.find(params[:id])
   end
 
   def new
@@ -21,20 +19,15 @@ class QuizzesController < ApplicationController
     if @quiz.save
       flash[:notice] = "Quiz created successfully"
       redirect_to quiz_path(@quiz)
-      # @quiz.questions.each do |q|
-      #   q.question_choices.each do |c|
-      #     if c.correct == "true"
-      #       c.option
-      #     end
-      #   end
-      # end
     else
-      render :new
+      flash[:notice] = "Please fill in blank fields"
+      redirect_to new_quiz_path
     end
   end
 
   def show
     @quiz = Quiz.find(params[:id])
+    @submission = @quiz.submissions.build
   end
 
   def update
@@ -53,6 +46,7 @@ class QuizzesController < ApplicationController
   def quiz_params
     params.require(:quiz).permit(:title, :age_rating, :private,
       :question, questions_attributes:
-        [:name, question_choices_attributes:[:option, :correct]])
+        [:name, question_choices_attributes:[:option, :correct]],
+        submissions_attributes: [:result])
   end
 end

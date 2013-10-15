@@ -2,4 +2,8 @@
   <%= f.input :name, :label => 'Question' %>
   <%= f.hidden_field :_destroy %>
   <%= link_to '[remove]', '#', class: "remove_fields" %>
+  <%= f.simple_fields_for :question_choices do |b| %>
+    <%= render 'question_choice_fields', f: b %>
+  <% end %>
+  <%= link_to_add_fields 'Add Answer', f, :question_choices %><br />
 </fieldset>

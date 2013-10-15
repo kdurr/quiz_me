@@ -24,4 +24,4 @@ describe User do
 
   it { should have_valid(:age).when(12, 21) }
   it { should_not have_valid(:age).when(nil, '', 'dfi34kjdsf') }
-
+end

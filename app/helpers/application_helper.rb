@@ -9,14 +9,9 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  # Potentially removing partial dependence
-  # def link_to_add_answers(f)
-  #   new_answer = QuestionChoice.new
-  #   id = new_answer.id
-  #   fields = f.fields_for(:question_choice, new_answer, child_index: id) do |b|
-  #     b.input :option, label: 'Answer Option'
-  #     b.input :correct, label: false, :inline_label => true
-  #   end
-  #   link_to('Add Answer', '#', class: 'add_fields', data: {id: id, fields: fields.gsub('\n', '')})
-  # end
+  def gravatar_url(user)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=35"
+  end
+
 end

@@ -3,6 +3,7 @@ BreakableToy::Application.routes.draw do
   # resources :users
   resources :quizzes do
     resources :questions
+    resources :submissions
   end
 
   resources :questions do
@@ -10,13 +11,19 @@ BreakableToy::Application.routes.draw do
   end
 
   resources :question_choices do
+    resources :answer
+  end
+
+  resources :submissions do
     resources :answers
   end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'quizzes#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
