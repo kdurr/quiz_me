@@ -11,7 +11,7 @@
       <div class='answer-field'>
         <%= f.simple_fields_for :answer do |a| %>
           <%= a.hidden_field :question, :value => q %>
-          <%= a.input :selection, as: :radio_buttons,
+          <%= a.input :question_choices, as: :radio_buttons,
               collection: q.question_choices, label_method: :option, 
               label: false, value_method: :id,
               input_html: { name: "submission[result][#{q.id}]" } %>

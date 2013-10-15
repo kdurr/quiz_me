@@ -18,8 +18,8 @@
     <div class='secondary-nav'>
     <% if user_signed_in? %>
       <li>
-        <%= image_tag gravatar_url(current_user) %>
-        <strong><%= current_user.username %></strong>
+        <%= image_tag gravatar_url(current_user, "35") %>
+        <strong><%= link_to current_user.username, user_path(current_user) %></strong>
       </li>
       <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
       <li><%= link_to "Logout", destroy_user_session_path, method: :delete %>
