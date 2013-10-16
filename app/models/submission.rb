@@ -18,11 +18,7 @@ class Submission < ActiveRecord::Base
         initial_result += 1
       end
     end
-    if initial_result != count
-      calculated_result = ((count - initial_result).to_f/count.to_f)*100.0
-    else
-      calculated_result = 100
-    end
-    self.result = calculated_result
+    calculated_result = (initial_result.to_f/count.to_f)*100.0
+    self.result = calculated_result.round(2)
   end
 end
