@@ -1,4 +1,4 @@
-<h1>You scored a <%= @submission.result %>%</h1>
+<h1><%= "You scored a #{@submission.result}%" %></h1>
 
 <h3>Take Quiz: <strong><%= @quiz.title %></strong></h3>
 <% @quiz.questions.each do |q| %>
