@@ -12,11 +12,16 @@ class SubmissionsController < ApplicationController
     @submission.user = current_user
 
     if @submission.save
-      redirect_to quizzes_path,
-        notice: "Quiz taken!"
+      redirect_to submission_path(@submission),
+        notice: "Quiz taken! You got a #{@submission.result}%!"
     else
       redirect_to quiz_path(@quiz)  
     end
+  end
+
+  def show
+    @submission = Submission.find(params[:id])
+    @quiz = @submission.quiz
   end
 
   protected

@@ -10,15 +10,14 @@ feature 'have a public profile', %Q{
   # * Public viewers can view the the quizzes I have created
   # * Public viewers can view my scores on past quizzes
   # * Public viewers can see my avatar
+  let(:user) { FactoryGirl.create(:user, email: "neon@trees.com") }
+  let(:quiz) { FactoryGirl.create(:quiz, user: user) }
 
   scenario 'viewers see quizzes I have created' do
-    user = FactoryGirl.create(:user, email: "neon@trees.com")
-    quiz = FactoryGirl.create(:quiz, user: user)
+    user
+    quiz
     visit user_path(user)
     expect(page).to have_content(user.username)
     expect(page).to have_content(quiz.title)
   end
-
-  scenario 'viewers can see my quiz scores'
-
 end

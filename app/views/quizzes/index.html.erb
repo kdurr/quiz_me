@@ -11,7 +11,7 @@
     <%= link_to 'Create a Quiz', new_quiz_path %>
   </div>
 
-    <% @quiz.each do |quest| %>
+    <% @quizzes.each do |quest| %>
     <% if !quest.private %>
         <% if current_user.present? && current_user.age >= quest.age_rating %>
           <div class='show-quiz'>
