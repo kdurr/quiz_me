@@ -1,0 +1,29 @@
+<strong>Name: </strong>
+<%= @user.first_name %>
+<%= @user.last_name[0] %>.<br />
+<%= image_tag gravatar_url(current_user, "150") %><br />
+
+<strong>Age: </strong>
+<%= @user.age %><br />
+
+<strong>Username: </strong>
+<%= @user.username %><br />
+
+<strong>Created Quizzes: </strong>
+<% if @user.quizzes.present? %>
+  <% @user.quizzes.each do |q| %>
+    <%= q.title %><br />
+  <% end %>
+<% else %>
+  <div><%= @user.username%> has not created any quizzes yet!</div>
+<% end %>
+
+<strong>Taken Quizzes: </strong>
+<% if @user.submissions.present? %>
+  <% @user.submissions.each do |s| %>
+    <%= s.quiz.title %>
+    <%= s.result %>%
+  <% end %>
+<% else %>
+  <div><%= @user.username %> has not taken any quizzes yet!</div>
+<% end %>

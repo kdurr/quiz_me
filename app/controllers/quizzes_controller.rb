@@ -2,7 +2,8 @@ class QuizzesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @quiz = Quiz.all
+    @q = Quiz.search(params[:q])
+    @quizzes = @q.result(distinct: true)
   end
 
   def new
@@ -28,6 +29,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @submission = @quiz.submissions.build
+    @submission.answers.build
   end
 
   def update

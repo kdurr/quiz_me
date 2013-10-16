@@ -16,14 +16,14 @@ feature 'user creates a quiz', %Q{
 # * I have the option to provide a link for additional information on a question
 
   scenario 'authenticated user creates quiz' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, email: 'workno@more.com')
     visit new_user_session_path
     sign_in_as user
 
     visit new_quiz_path
     quiz_name = "Quiz Name"
     fill_in "Title", with: quiz_name
-    select 8, from: "Age rating"
+    select 10, from: "Age rating"
     check("Private")
     click_button "Create Quiz"
     expect(page).to have_content("Quiz created successfully")

@@ -16,6 +16,7 @@ feature 'unregistered user signs up', %Q{
   # * I must provide my age
 
   scenario 'providing valid required information' do
+    prev_count = User.count
     visit quizzes_path
     click_on 'Sign Up'
 
@@ -31,12 +32,21 @@ feature 'unregistered user signs up', %Q{
     click_on 'Sign up'
     end
 
-
     expect(page).to have_content("successfully")
     expect(page).to have_content("Logout")
+    expect(User.count).to eql(prev_count + 1)
   end
 
-  scenario 'invalid information is supplied' 
+  scenario 'invalid information is supplied' do
+    prev_count = User.count
+    visit quizzes_path
+    click_on 'Sign Up'
 
-  scenario 'the password confirmation fails'
+    within(".form-actions") do
+      click_on 'Sign up'
+    end
+
+    expect(page).to have_content("can't be blank")
+    expect(User.count).to eql(prev_count)
+  end 
 end

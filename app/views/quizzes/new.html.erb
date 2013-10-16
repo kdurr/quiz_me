@@ -6,6 +6,7 @@
     <%= f.input :title %>
     <%= f.input :age_rating, collection: [6, 10, 13, 17] %>
     <%= f.input :private, :label => false, :inline_label => true %>
+    <%= f.input :news_url, label: 'News sources' %>
   </div>
     <%= f.simple_fields_for :questions do |q| %>
     <div class='question-answer-set'>

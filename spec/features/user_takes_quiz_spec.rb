@@ -11,13 +11,16 @@ feature 'nerd can take a quiz', %Q{
   # * I can take a quiz by selecting answers
   # * I can see my score once submitted
   # * I can view which questions I answered incorrectly
-  
+  let(:user) { FactoryGirl.create(:user, email: "hello@bye.com") }
+  let(:user1) { FactoryGirl.create(:user, email: "bye@hello.com") }
+  let(:quiz) { FactoryGirl.create(:quiz, user: user) }
+
   scenario 'can select a quiz' do
-    user = FactoryGirl.create(:user)
-    user1 = FactoryGirl.create(:user)
+    user
+    user1 
     sign_in_as(user1)
 
-    quiz = FactoryGirl.create(:quiz)
+    quiz
     visit quizzes_path
     click_on 'Take this Quiz!'
 
@@ -25,18 +28,18 @@ feature 'nerd can take a quiz', %Q{
   end
 
   scenario 'can submit quiz with options selected' do
-    user = FactoryGirl.create(:user)
-    user1 = FactoryGirl.create(:user)
+    prev_count = Submission.count
+    user
+    user1 
+    quiz
+    FactoryGirl.create(:question)
+    FactoryGirl.create(:question_choice)
     sign_in_as(user1)
-    quiz = FactoryGirl.create(:quiz)
 
     visit quiz_path(quiz)  
-    binding.pry
-    click_on 'Here'
-    click_on 'Create Submission'
+    choose 'Here'
+    click_on 'Submit'
 
-    expect(@submission.result.count).to eql(4)
+    expect(Submission.count).to eql(prev_count + 1)
   end
-
-
 end

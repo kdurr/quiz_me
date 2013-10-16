@@ -9,9 +9,8 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def gravatar_url(user)
+  def gravatar_url(user, size)
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=35"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=" + size
   end
-
 end
