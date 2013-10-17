@@ -8,46 +8,71 @@
 </head>
 <body>
 
-<nav>
-  <ul>
-    <div class='primary-nav'>
-      <li><strong><%= link_to 'Quiz Me', root_path %></strong></li>
-      <li><%= link_to 'Create A Quiz', new_quiz_path %></li>
-      <li><%= link_to 'Take A Quiz', quizzes_path %></li>
-    </div>
-    <div class='secondary-nav'>
-    <% if user_signed_in? %>
-      <li>
-        <%= image_tag gravatar_url(current_user, "35") %>
-        <strong><%= link_to current_user.username, user_path(current_user) %></strong>
-      </li>
-      <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <li><%= link_to "Login", new_user_session_path %></li>
-    <% end %>
-    </div>
-  </ul>
-</nav>
+  <div class='navbar'>
+    <div class='navbar-inner'>
+      <ul class='nav'>
+        <li class="<%= 'active' if current_page?(root_path) %> pull-left">
+          <%= link_to 'Quiz Me', root_path %>
+        </li>
+        <li class="<%= 'active' if current_page?(new_quiz_path) %> pull-left">
+          <%= link_to 'Create A Quiz', new_quiz_path %>
+        </li>
+        <li class="<%= 'active' if current_page?(quizzes_path) %> pull-left">
+          <%= link_to 'Take A Quiz', quizzes_path %>
+        </li>
 
-<div class='content'>
-  <div id='flash-msg'>
-    <% flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, class: name %>
-    <% end -%>
+      <% if user_signed_in? %>
+        <div class='btn-group offset9'>
+          <button class='btn'>
+            <%= image_tag gravatar_url(current_user, "35") %>
+            <strong><%= link_to current_user.username, user_path(current_user) %></strong>
+          </button>
+          <button class='btn dropdown-toggle' data-toggle='dropdown'>
+            <span class='caret'></span>
+          </button>
+          <ul class='dropdown-menu'>
+            <li>
+              <%= link_to 'Edit profile', edit_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li class="pull-right">
+              <%= link_to "Sign Up", new_user_registration_path %>
+            </li>
+            <li class="pull-right">
+              <%= link_to "Login", new_user_session_path %>
+            </li>
+          </ul>
+      <% end %>
+        </div>
+      </ul>
+    </div>
   </div>
-<%= yield %>
-
-<%= yield :extra_footer %>
 
 
+  <div class='container-fluid'>
+    <div id='flash-msg'>
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+      <% end -%>
+    </div>
+
+
+    <div class="row-fluid">
+      <div class="span10 offset1">
+        <%= yield %>
+
+        <%= yield :extra_footer %>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script>
   $(function(){
-    $('#flash-msg').fadeOut('slow');
+    $('#flash-msg').fadeOut(3000);
   })
 </script>
 </html>

@@ -1,13 +1,17 @@
-<h1><%= "You scored a #{@submission.result}%" %></h1>
+<section>
+  <h1 class="your-score"><%= "You scored a #{@submission.result}%" %></h1>
 
-<h3>Take Quiz: <strong><%= @quiz.title %></strong></h3>
-<% @quiz.questions.each do |q| %>
-  <strong><%= q.name %></strong><br />
-  <% q.question_choices.each do |c| %>
-    <% if c.correct == true %>
-      <%= c.option %><%= "*" %><br />
-    <% else %>
-      <%= c.option %><br />
-    <% end %>
+  <h3 class="quiz-title">Quiz: <strong><%= @quiz.title %></strong></h3>
+  <% @quiz.questions.each do |q| %>
+    <div class="result-content">
+      <strong><%= q.name %></strong><br />
+      <% q.question_choices.each do |c| %>
+        <% if c.correct == true %>
+          <em><%= "*#{c.option}*" %></em><br />
+        <% else %>
+          <%= c.option %><br />
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</section>

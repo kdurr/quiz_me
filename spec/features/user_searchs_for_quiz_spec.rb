@@ -11,7 +11,6 @@ feature 'user searches for a quiz', %Q{
     visit quizzes_path
     fill_in 'q_title_cont', with: quiz.title
     click_on 'Search'
-    binding.pry
     expect(page).to have_content(quiz.title)
   end
 

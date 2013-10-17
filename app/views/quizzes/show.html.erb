@@ -13,7 +13,7 @@
           <%= a.hidden_field :question_id, value: q.id %>
           <%= a.input :question_choice_id, as: :radio_buttons,
               collection: q.question_choices, label_method: :option, 
-              label: false%>
+              label: false, item_wrapper_class: 'inline' %>
         <% end %>
       </div>
     <% end %>

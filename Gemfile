@@ -29,9 +29,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 gem 'simple_form'
-gem 'bourbon'
-gem 'neat'
 gem 'ransack'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

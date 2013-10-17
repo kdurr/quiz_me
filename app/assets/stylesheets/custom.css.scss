@@ -1,0 +1,93 @@
+@import 'bootstrap';
+
+.global-navi {
+  margin: 0;
+  font-size: 20px;
+  font-family: Verdana;
+  background-color: #18FFAE;
+  // @include gradient-vertical(#C6CD49, #A6BA47)
+}
+
+body {
+  background-color: #79B6C8;
+  // @include gradient-vertical(#81EC93, #0BE8D9)
+}
+
+section {
+  background-color: white;
+  padding: 0.5em 6em;
+}
+
+/////////////////////////////////////////////////////////////////////
+// quizzes index
+/////////////////////////////////////////////////////////////////////
+
+.create-quiz {
+  text-align: center;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: #2ecc71;
+}
+
+.show-quiz {
+  border: 1px solid #2ecc71;
+  border-radius: 5px;
+  width: 300px;
+  padding: 25px;
+  display: inline-block;
+}
+
+.take-me {
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px 0 0 20px;
+  width: 140px;
+  background-color: #9b59b6;
+}
+
+/////////////////////////////////////////////////////////////////////
+// quizzes new
+/////////////////////////////////////////////////////////////////////
+
+.title_field, .question-answer-set {
+  margin-top: 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px 0 10px 5px;
+  width: 870px;
+}
+
+.quiz_questions_question_choices_option {
+  display: inline-block;
+}
+
+.quiz_questions_question_choices_correct {
+  display: inline-block;
+}
+
+#sub {
+  margin: 15px 0;
+}
+
+/////////////////////////////////////////////////////////////////////
+// submissions show
+/////////////////////////////////////////////////////////////////////
+
+.your-score {
+  color: #e74c3c;
+  text-align: center;
+}
+
+em {
+  color: #2ecc71;
+}
+
+.quiz-title {
+  text-align: center;
+}
+
+.result-content {
+}
