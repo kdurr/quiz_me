@@ -32,18 +32,6 @@ class QuizzesController < ApplicationController
     @submission.answers.build
   end
 
-  def update
-    @quiz = Quiz.find(params[:id])
-    respond_to do |format|
-      if @quiz.update(quiz_params)
-        format.html { redirect_to @quiz, notice: 'Quiz Updated' }
-      else
-        format.html { render action: 'edit' }
-      end
-    end
-  end
-
-
   protected
   def quiz_params
     params.require(:quiz).permit(:title, :age_rating, :private,

@@ -8,7 +8,10 @@ feature 'user searches for a quiz', %Q{
   
   scenario 'existing quiz will appear when searched' do
     quiz = FactoryGirl.create(:quiz)
+    user = FactoryGirl.create(:user)
+    sign_in_as(user)
     visit quizzes_path
+
     fill_in 'q_title_cont', with: quiz.title
     click_on 'Search'
     expect(page).to have_content(quiz.title)

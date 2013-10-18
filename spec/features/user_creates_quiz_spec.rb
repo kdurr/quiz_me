@@ -23,7 +23,7 @@ feature 'user creates a quiz', %Q{
     visit new_quiz_path
     quiz_name = "Quiz Name"
     fill_in "Title", with: quiz_name
-    select 10, from: "Age rating"
+    choose 10
     check("Private")
     click_button "Create Quiz"
     expect(page).to have_content("Quiz created successfully")

@@ -2,17 +2,18 @@
 <html>
 <head>
   <title>Quiz Me</title>
- <%= stylesheet_link_tag    "application", media: "all" %>
- <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div class="row-fluid">
   <div class='navbar'>
     <div class='navbar-inner'>
       <ul class='nav'>
         <li class="<%= 'active' if current_page?(root_path) %> pull-left">
-          <%= link_to 'Quiz Me', root_path %>
+          <%= link_to image_tag('https://lh5.googleusercontent.com/-OzkTTMhg9ho/UmEwMPEuhGI/AAAAAAAAAkY/2QUZxf-mRIY/w167-h176-no/q.png', size: '20x20'), root_path %>
         </li>
         <li class="<%= 'active' if current_page?(new_quiz_path) %> pull-left">
           <%= link_to 'Create A Quiz', new_quiz_path %>
@@ -22,9 +23,9 @@
         </li>
 
       <% if user_signed_in? %>
-        <div class='btn-group offset9'>
-          <button class='btn'>
-            <%= image_tag gravatar_url(current_user, "35") %>
+        <div class='btn-group pull-right'>
+          <button class='btn dropsit'>
+            <%= image_tag gravatar_url(current_user, "18") %>
             <strong><%= link_to current_user.username, user_path(current_user) %></strong>
           </button>
           <button class='btn dropdown-toggle' data-toggle='dropdown'>
@@ -38,7 +39,7 @@
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             </li>
           <% else %>
-            <li class="pull-right">
+            <li class="signer pull-right">
               <%= link_to "Sign Up", new_user_registration_path %>
             </li>
             <li class="pull-right">
@@ -50,6 +51,7 @@
       </ul>
     </div>
   </div>
+</div>
 
 
   <div class='container-fluid'>
@@ -68,6 +70,10 @@
       </div>
     </div>
   </div>
+
+<!--   <div class="footer">
+    <p>Kristina Durr</p>
+  </div> -->
 </body>
 
 <script>
