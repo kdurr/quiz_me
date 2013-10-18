@@ -11,19 +11,21 @@
 <div class="row-fluid">
   <div class='navbar'>
     <div class='navbar-inner'>
-      <ul class='nav'>
-        <li class="<%= 'active' if current_page?(root_path) %> pull-left">
+      <ul class='nav pull-left'>
+        <li class="<%= 'active' if current_page?(root_path) %>">
           <%= link_to image_tag('https://lh5.googleusercontent.com/-OzkTTMhg9ho/UmEwMPEuhGI/AAAAAAAAAkY/2QUZxf-mRIY/w167-h176-no/q.png', size: '20x20'), root_path %>
         </li>
-        <li class="<%= 'active' if current_page?(new_quiz_path) %> pull-left">
+        <li class="<%= 'active' if current_page?(new_quiz_path) %>">
           <%= link_to 'Create A Quiz', new_quiz_path %>
         </li>
-        <li class="<%= 'active' if current_page?(quizzes_path) %> pull-left">
+        <li class="<%= 'active' if current_page?(quizzes_path) %>">
           <%= link_to 'Take A Quiz', quizzes_path %>
         </li>
+      </ul>
 
       <% if user_signed_in? %>
-        <div class='btn-group pull-right'>
+      <ul class='nav pull-right'>
+        <div class='btn-group'>
           <button class='btn dropsit'>
             <%= image_tag gravatar_url(current_user, "18") %>
             <strong><%= link_to current_user.username, user_path(current_user) %></strong>
@@ -38,17 +40,19 @@
             <li>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             </li>
+          </ul>
+        </ul>
           <% else %>
-            <li class="signer pull-right">
+          <ul class='nav pull-right'>
+            <li class="signer">
               <%= link_to "Sign Up", new_user_registration_path %>
             </li>
-            <li class="pull-right">
+            <li>
               <%= link_to "Login", new_user_session_path %>
             </li>
           </ul>
       <% end %>
         </div>
-      </ul>
     </div>
   </div>
 </div>
