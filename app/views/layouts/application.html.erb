@@ -59,11 +59,13 @@
 
 
   <div class='container-fluid'>
-    <div id='flash-msg'>
-      <% flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, class: name %>
-      <% end -%>
-    </div>
+    <% if notice || alert %>
+      <div id='flash-msg' class='alert'>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, class: name %>
+        <%- end -%>
+      </div>
+    <% end %>
 
 
     <div class="row-fluid">

@@ -1,6 +1,11 @@
 @import 'bootstrap';
 
 body {
+  background: url('https://lh6.googleusercontent.com/-0cJF6CI1hN0/UmLwQ4SpUuI/AAAAAAAAAoE/1XXQgTvOQS8/w1005-h628-no/city_bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-color: #7ec5c1;
   // @include gradient-vertical(#81EC93, #0BE8D9)
 }
@@ -16,6 +21,17 @@ h4 {
   text-align: center;
   font-family: Helvetica;
   font-size: 3em;
+}
+
+h2, h3 {
+  color: #cc5d4a;
+  font-family: Helvetica;
+}
+
+.control-label {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid gray;
 }
 
 .footer {
@@ -60,18 +76,19 @@ h4 {
 .create-quiz {
   text-align: center;
   display: block;
-  padding: 10px;
+  padding: 6px;
   border-radius: 5px;
   margin-bottom: 15px;
   background-color: #2ecc71;
 }
 
 .show-quiz {
-  border: 1px solid #2ecc71;
-  border-radius: 5px;
-  width: 300px;
-  padding: 25px;
-  display: inline-block;
+  // border: 1px solid #2ecc71;
+  // border-radius: 5px;
+  // width: 300px;
+  // padding: 25px;
+  display: block;
+  font-size: 1.5em;
 }
 
 .take-me {
@@ -80,7 +97,7 @@ h4 {
   padding: 5px;
   margin: 10px 0 0 20px;
   width: 140px;
-  background-color: #9b59b6;
+  background-color: #e36d5f;
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -111,6 +128,17 @@ h4 {
 
 }
 
+fieldset {
+}
+
+.simple_form {
+  background: #c6b19c;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px;
+
+}
 /////////////////////////////////////////////////////////////////////
 // submissions show
 /////////////////////////////////////////////////////////////////////

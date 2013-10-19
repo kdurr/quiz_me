@@ -8,7 +8,7 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    3.times do
+    2.times do
       question = @quiz.questions.build
       2.times { question.question_choices.build }
     end
