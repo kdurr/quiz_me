@@ -2,7 +2,8 @@ class Quiz < ActiveRecord::Base
   belongs_to :user,
     inverse_of: :quizzes
   has_many :submissions,
-    inverse_of: :quiz
+    inverse_of: :quiz,
+    :dependent => :destroy
   has_many :questions,
     inverse_of: :quiz,
     :dependent => :destroy

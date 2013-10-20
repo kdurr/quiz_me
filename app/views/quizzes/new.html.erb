@@ -2,12 +2,12 @@
   <h4>Create A Quiz!</h4>
 
   <%= simple_form_for @quiz do |f| %>
-  <div class='title_field'>
+  <fieldset>
     <%= f.input :title %>
     <%= f.input :age_rating, as: :radio_buttons, collection: [6, 10, 13, 17] %>
     <%= f.input :private, :label => false, :inline_label => true %>
     <%= f.input :news_url, label: 'News sources' %>
-  </div>
+  </fieldset>
     <%= f.simple_fields_for :questions do |q| %>
     <div class='question-answer-set'>
      <%= render 'question_fields', f: q %>
@@ -15,7 +15,7 @@
     <% end %><br />
     <%= link_to_add_fields 'Add Question', f, :questions %><br />
     <div id='sub'>
-      <%= f.submit %>
+      <%= f.submit "Create Quiz!", class: 'btn' %>
     </div>
   <% end %>
 </section>
