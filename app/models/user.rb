@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     :with => /.+@.+\..+/i
 
   validates_numericality_of :age
+
+  def self.guest_record
+    new { |u| u.guest = true }
+  end
 end

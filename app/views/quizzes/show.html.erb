@@ -1,23 +1,30 @@
-<section>
-<div class="quiz-title">
-  <h3>Take Quiz: <strong><%= @quiz.title %></strong></h3>
-</div>
+<section class='container-fluid'>
+  <div class="quiz-title">
+    <h3>Take Quiz: <strong><%= @quiz.title %></strong></h3>
+  </div>
 
-<div class="q_a_set">
-  <%= simple_form_for([@quiz, @submission]) do |f|  %>
-    <% @quiz.questions.each do |q| %>
-      <strong>Question:</strong>
-      <%= q.name %><br />
-      <div class='answer-field'>
-        <%= f.simple_fields_for :answers do |a| %>
-          <%= a.hidden_field :question_id, value: q.id %>
-          <%= a.input :question_choice_id, as: :radio_buttons,
-              collection: q.question_choices, label_method: :option, 
-              label: false, item_wrapper_class: 'inline' %>
-        <% end %>
+  <div class="q_a_set">
+    <%= simple_form_for([@quiz, @submission]) do |f|  %>
+      <% @quiz.questions.each do |q| %>
+      <div class='quest-name'>
+        <strong>Question:</strong>
+        <%= q.name %><br />
+      </div>
+        <div class='answer-field'>
+          <%= f.simple_fields_for :answers do |a| %>
+            <%= a.hidden_field :question_id, value: q.id %>
+            <%= a.input :question_choice_id, as: :radio_buttons,
+                collection: q.question_choices, label_method: :option, 
+                label: false, item_wrapper_class: 'inline' %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= f.submit "Submit", class: 'btn' %>
+    <% end %>
+    <% if @quiz.news_url.present? %>
+      <div class='news-url'>
+        <strong>Quiz sources: </strong><%= @quiz.news_url %>
       </div>
     <% end %>
-    <%= f.submit "Submit", class: 'btn' %>
-  <% end %>
-  <%= @quiz.news_url %>
-</div>
+  </div>
+</section>

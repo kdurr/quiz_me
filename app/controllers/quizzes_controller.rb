@@ -8,10 +8,8 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    2.times do
       question = @quiz.questions.build
       2.times { question.question_choices.build }
-    end
   end
 
   def create

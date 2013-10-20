@@ -1,4 +1,4 @@
-<section>
+<section class='container-fluid'>
   <%= search_form_for @q do |f| %>
     <div class="field pull-right">
       <%= f.text_field :title_cont %>
@@ -8,13 +8,10 @@
 
   <h4 class='quiz-take'>Take A Quiz!</h4>
 
-  <%= button_to 'Create a Quiz', new_quiz_path, method: :get, 
-      class: 'create-quiz btn pull-right' %>
-
   <% @quizzes.each do |quest| %>
   <% if !quest.private %>
       <% if current_user.present? && current_user.age >= quest.age_rating %>
-        <div class='show-quiz'>
+        <div class='show-quiz span8 offset2'>
           <strong>Title:</strong>
           <div class='quiz-name'><%= quest.title %></div>
             <%= button_to 'Take this Quiz!', quiz_path(quest), 
