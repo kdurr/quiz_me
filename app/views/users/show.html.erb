@@ -2,7 +2,7 @@
   <strong>Name: </strong>
   <%= @user.first_name %>
   <%= @user.last_name[0] %>.<br />
-  <%= image_tag gravatar_url(current_user, "150") %><br />
+  <%= image_tag gravatar_url(@user, "150") %><br />
 
   <strong>Age: </strong>
   <%= @user.age %><br />
@@ -31,5 +31,9 @@
   <% else %>
     <div><%= @user.username %> has not taken any quizzes yet!</div>
   <% end %>
+  </div>
+
+  <div>
+    <%= link_to 'Take more quizzes!', quizzes_path %>
   </div>
 </section>

@@ -10,15 +10,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_presence_of :email
   validates_presence_of :username
 
-  validates_format_of :email, 
-    :with => /.+@.+\..+/i
-
   validates_numericality_of :age
-
-  def self.guest_record
-    new { |u| u.guest = true }
-  end
 end
