@@ -1,22 +1,22 @@
 <section>
-  <h4>Take A Quiz!</h4>
   <%= search_form_for @q do |f| %>
-    <div class="field">
-      <%= f.label :title_cont, "Quiz title contains" %>
+    <div class="field pull-right">
       <%= f.text_field :title_cont %>
       <%= f.submit "Search", class: 'btn' %>
     </div>
   <% end %>
 
+  <h4 class='quiz-take'>Take A Quiz!</h4>
+
   <%= button_to 'Create a Quiz', new_quiz_path, method: :get, 
-      class: 'create-quiz btn' %>
+      class: 'create-quiz btn pull-right' %>
 
   <% @quizzes.each do |quest| %>
   <% if !quest.private %>
       <% if current_user.present? && current_user.age >= quest.age_rating %>
         <div class='show-quiz'>
           <strong>Title:</strong>
-          <%= quest.title %>
+          <div class='quiz-name'><%= quest.title %></div>
             <%= button_to 'Take this Quiz!', quiz_path(quest), 
                 method: :get, class: 'take-me btn' %><br />
         </div>
@@ -25,3 +25,14 @@
   <% end %>
 
 </section>
+
+<%= content_for :extra_footer do %>
+  <script>
+    $(function() {
+      $('.quiz-name').each(function() {
+        if($(this).height() > 30)
+          $(this).css('font-size', '12px');
+      }); 
+    });
+  </script>
+<% end %>

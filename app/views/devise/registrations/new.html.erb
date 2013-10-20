@@ -8,7 +8,7 @@
       <%= f.input :first_name %>
       <%= f.input :last_name, required: false %>
       <%= f.input :username %>
-      <%= f.input :age, required: true %>
+      <%= f.input :age, required: true, as: :select, collection: 6..110 %>
       <%= f.input :email, :required => true %>
       <%= f.input :password, :required => true %>
       <%= f.input :password_confirmation, :required => true %>
