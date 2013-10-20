@@ -1,8 +1,8 @@
-<section>
+<section class='container-fluid user-profile'>
   <strong>Name: </strong>
   <%= @user.first_name %>
   <%= @user.last_name[0] %>.<br />
-  <%= image_tag gravatar_url(current_user, "150") %><br />
+  <%= image_tag gravatar_url(@user, "150") %><br />
 
   <strong>Age: </strong>
   <%= @user.age %><br />
@@ -12,20 +12,28 @@
 
   <strong>Created Quizzes: </strong>
   <% if @user.quizzes.present? %>
-    <% @user.quizzes.each do |q| %>
-      <%= q.title %><br />
-    <% end %>
+    <div class='made-quizzes'>
+      <% @user.quizzes.each do |q| %>
+        <%= link_to q.title, quiz_path(q) %><br />
+      <% end %>
   <% else %>
     <div><%= @user.username%> has not created any quizzes yet!</div>
   <% end %>
+    </div><br />
 
   <strong>Taken Quizzes: </strong>
   <% if @user.submissions.present? %>
+    <div class='taken-quizzes'>
     <% @user.submissions.each do |s| %>
-      <%= s.quiz.title %>
-      <%= s.result %>%
+      <%= link_to s.quiz.title, quiz_path(s.quiz) %>
+      <%= s.result %>%<br />
     <% end %>
   <% else %>
     <div><%= @user.username %> has not taken any quizzes yet!</div>
   <% end %>
+  </div>
+
+  <div>
+    <%= link_to 'Take more quizzes!', quizzes_path %>
+  </div>
 </section>

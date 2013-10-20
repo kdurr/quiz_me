@@ -23,7 +23,7 @@ feature 'unregistered user signs up', %Q{
     fill_in "First name", with: "Tina"
     fill_in "Last name", with: "Durr"
     fill_in "Username", with: "tdurr"
-    fill_in "Age", with: 10
+    select 10, from: "Age"
     fill_in "Email", with: "tdurr@abc.com"
     fill_in "user_password", with: "password"
     fill_in "Password confirmation", with: "password"
