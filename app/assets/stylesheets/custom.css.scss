@@ -27,6 +27,7 @@ h4 {
 
 h2, h3 {
   color: #cc5d4a;
+  text-align: center;
   font-family: Helvetica;
   margin: 0.75em 0;
 }
@@ -37,6 +38,14 @@ h2, h3 {
   left: 0;
   right: 0;
   height: 50px;
+}
+
+.signer-in, .signer-up {
+  text-align: center;
+}
+
+.signer-in .controls, {
+  display: inline-block;
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -72,7 +81,7 @@ hr {
 }
 
 .take-me {
-  margin-top: 6px;
+  margin-top: 1em;
 }
 
 .quiz-take {
@@ -171,7 +180,12 @@ em {
   color: #2ecc71;
 }
 
-.quiz-title {
+.quiz-title, .take-another {
+  text-align: center;
+}
+
+.result-content {
+  font-size: 1.25em;
   text-align: center;
 }
 
@@ -183,13 +197,14 @@ em {
   font-size: 1.5em;
 }
 
-.user-profile strong {
-  padding-top: 4px;
+.user-info {
+  margin-top: 3em;
 }
 
-.made-quizzes, .taken-quizzes {
+.quiz-stats {
+  padding-top: 1em;
   text-align: center;
-  // display: inline-block;
+  clear: both;
 }
 
 /////////////////////////////////////////////////////////////////////
