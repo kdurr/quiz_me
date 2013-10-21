@@ -1,39 +1,47 @@
 <section class='container-fluid user-profile'>
-  <strong>Name: </strong>
-  <%= @user.first_name %>
-  <%= @user.last_name[0] %>.<br />
-  <%= image_tag gravatar_url(@user, "150") %><br />
 
-  <strong>Age: </strong>
-  <%= @user.age %><br />
-
-  <strong>Username: </strong>
-  <%= @user.username %><br />
-
-  <strong>Created Quizzes: </strong>
-  <% if @user.quizzes.present? %>
-    <div class='made-quizzes'>
-      <% @user.quizzes.each do |q| %>
-        <%= link_to q.title, quiz_path(q) %><br />
-      <% end %>
-  <% else %>
-    <div><%= @user.username%> has not created any quizzes yet!</div>
-  <% end %>
-    </div><br />
-
-  <strong>Taken Quizzes: </strong>
-  <% if @user.submissions.present? %>
-    <div class='taken-quizzes'>
-    <% @user.submissions.each do |s| %>
-      <%= link_to s.quiz.title, quiz_path(s.quiz) %>
-      <%= s.result %>%<br />
-    <% end %>
-  <% else %>
-    <div><%= @user.username %> has not taken any quizzes yet!</div>
-  <% end %>
+  <div class='span4 offset1 pull-left'>
+    <%= image_tag gravatar_url(@user, "200") %><br />
   </div>
 
-  <div>
+  <div class='user-info'>
+    <strong>Name: </strong>
+    <%= @user.first_name %>
+    <%= @user.last_name[0] %>.<br />
+
+    <strong>Age: </strong>
+    <%= @user.age %><br />
+
+    <strong>Username: </strong>
+    <%= @user.username %><br />
+  </div>
+
+  <div class='quiz-stats'>
+    <strong>Created Quizzes: </strong>
+    <% if @user.quizzes.present? %>
+      <div class='made-quizzes'>
+        <% @user.quizzes.each do |q| %>
+          <%= link_to q.title, quiz_path(q) %><br />
+        <% end %>
+    <% else %>
+      <div><%= @user.username%> has not created any quizzes yet!</div>
+    <% end %>
+      </div><br />
+
+    <strong>Taken Quizzes: </strong>
+    <% if @user.submissions.present? %>
+      <div class='taken-quizzes'>
+      <% @user.submissions.each do |s| %>
+        <%= link_to s.quiz.title, quiz_path(s.quiz) %>
+        <%= s.result %>%<br />
+      <% end %>
+    <% else %>
+      <div><%= @user.username %> has not taken any quizzes yet!</div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class='offset1'>
     <%= link_to 'Take more quizzes!', quizzes_path %>
   </div>
 </section>
