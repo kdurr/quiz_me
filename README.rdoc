@@ -1,5 +1,0 @@
-== README
-
-Quiz Me is an app created with the intent of creating a fun way to educate children about current world events.
-
-After signing up for an account, players may create quizzes that they can then share with their friends and peers to gauge how much people are aware of the world around them.
